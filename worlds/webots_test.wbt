@@ -1,0 +1,66 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/robots/robotis/darwin-op/protos/RobotisOp2.proto"
+
+WorldInfo {
+  basicTimeStep 1
+}
+Viewpoint {
+  orientation -0.13186637575530624 0.09826380852404588 0.9863850581185372 1.8739094931823495
+  position 0.5185879839515093 -2.075609944402431 0.7282132357655668
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+}
+DEF ROBOTIS-OP2 RobotisOp2 {
+  hidden position_0_0 1.4059381419834929e-09
+  hidden position_0_1 -0.02000009590601733
+  hidden position_0_2 -0.009997938922816967
+  hidden position_0_3 -1.9759996185546038
+  hidden position_0_4 -0.8399997864881946
+  hidden rotation_10 0.5774169352685683 0.5773169332633156 0.5773169332632592 2.0944000009277692
+  hidden position_10_0 0.18999991610003292
+  hidden rotation_11 1 0 0 0.5954000838999663
+  hidden rotation_15 0.5696586728733042 0.5811578943889952 0.5811578943880702 2.106000055736538
+  hidden position_15_0 -0.010001696243572876
+  hidden rotation_16 0 0 1 0.010001696243577876
+  hidden position_16_0 1.149997443828322
+  hidden rotation_17 -1 0 0 1.1499974438283223
+  hidden position_17_0 -2.2500016185697045
+  hidden rotation_18 0.9999999999999999 0 0 2.2500016185697045
+  hidden position_18_0 -1.2300011300574758
+  hidden rotation_19 -1 0 0 1.2300011300574758
+  hidden position_19_0 -0.019998307513466936
+  hidden rotation_20 0 0 -1 0.019998307513466075
+  hidden rotation_21 0.5734780754464138 0.5792766597203972 0.5792766597105883 2.100198806065689
+  hidden position_21_0 0.020001787024722707
+  hidden rotation_22 0 0 -1 0.020001787024731085
+  hidden position_22_0 -1.150002528855711
+  hidden rotation_23 -1 0 0 1.150002528855711
+  hidden position_23_0 2.2499983874081013
+  hidden rotation_24 1 0 0 2.2499983874081013
+  hidden position_24_0 1.2200007395086618
+  hidden rotation_25 -1 0 0 1.2200007395086618
+  hidden position_25_0 0.04999825812898934
+  hidden rotation_26 0 0 1 0.04999825812899135
+  hidden rotation_27 -0.19727461757350087 -0.1972324536923135 0.9603031211402672 1.6113014869813547
+  hidden position_27_0 0.3687201329959251
+  hidden rotation_28 0 0 1 0.4166798670040736
+  hidden position_28_0 0.4920000416837052
+  hidden rotation_29 -1 0 0 1.0787999583162948
+  hidden rotation_30 0.6825799414501895 0.6825799414438751 0.26109241097422164 2.630699854261123
+  hidden position_30_0 -0.33000021473154195
+  hidden rotation_31 0 0 -1 0.45539978526845454
+  hidden position_31_0 0.5099999435407911
+  hidden rotation_32 -1 0 0 2.080799943540791
+  translation 0.030846399981609852 0.0021151766301816147 0.23461354891393138
+  rotation -0.06987668801076638 0.997542063492932 -0.005203848086681548 0.12960995844661025
+  controller "webots_walking_controller"
+  supervisor TRUE
+}

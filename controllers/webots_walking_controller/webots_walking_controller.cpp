@@ -1,0 +1,99 @@
+// File:          webots_test.cpp
+// Date:
+// Description:
+// Author:
+// Modifications:
+
+// You may need to add webots include files such as
+// <webots/DistanceSensor.hpp>, <webots/Motor.hpp>, etc.
+// and/or to add some other includes
+// If windows, need wsys2
+#include <webots/Robot.hpp>
+#include <webots/Supervisor.hpp>
+#include <Eigen/Dense>
+
+#include <iostream>
+
+// All the webots classes are defined in the "webots" namespace
+using namespace webots;
+
+// This is the main program of your controller.
+// It creates an instance of your Robot instance, launches its
+// function(s) and destroys it at the end of the execution.
+// Note that only one instance of Robot should be created in
+// a controller program.
+// The arguments of the main function can be specified by the
+// "controllerArgs" field of the Robot node
+int main(int argc, char **argv) {
+
+  const std::string MOTOR_NAMES[20] = {
+    "ShoulderR", "ShoulderL", "ArmUpperR", "ArmUpperL", "ArmLowerR", "ArmLowerL",  // arm
+    "PelvYR", "PelvYL", "PelvR", "PelvL", "LegUpperR", "LegUpperL", "LegLowerR", "LegLowerL", "AnkleR", "AnkleL", "FootR", "FootL",  // leg
+    "Neck", "Head"  // body
+  };
+  const double INIT_JOINT_ANGLES[20] = {
+    0, 0, 0, 0, 0, 0,   // arm
+    0, 0, 0, 0, -3.14/8, 3.14/8, 3.14/4, -3.14/4, 3.14/8, -3.14/8, 0, 0,   // leg
+    0, 0  // body
+  };
+  const double INIT_POS[3] = {0.0, 0.0, 0.31};  // [m] ちょっと中腰。特異点を回避。直立：219.5[mm]
+
+
+  // Supervisor Setup
+  Supervisor *supervisor = new Supervisor();
+
+  // Joints Initializing
+  Node *robot_node = supervisor->getFromDef("ROBOTIS-OP2");
+  if(robot_node == NULL) {
+    std::cerr << "robot_node DEF Not Found" << std::endl;
+  }
+
+  // 腰の初期高さを適用
+  Field *trans_field = robot_node->getField("translation");
+  trans_field->setSFVec3f(INIT_POS);
+  robot_node->resetPhysics();
+
+  // 各関節の初期角度を適用
+  for(int i = 0; i < 20; i++) {
+    Node *joint_node = robot_node->getFromProtoDef("D"+MOTOR_NAMES[i]);
+    if(joint_node == NULL) {
+      std::cerr << "joint_node DEF Not Found" << std::endl;
+    }
+
+    joint_node->setJointPosition(INIT_JOINT_ANGLES[i]);
+  }
+  robot_node->resetPhysics();
+
+  // create the Robot instance.
+    // SupervisorでRobotインスタンスは作成されているので、不要
+  // Robot *robot = new Robot();
+
+  // get the time step of the current world.
+  //int timeStep = (int)robot->getBasicTimeStep();
+  int timeStep = 10;
+
+  // You should insert a getDevice-like function in order to get the
+  // instance of a device of the robot. Something like:
+  //  Motor *motor = robot->getMotor("motorname");
+  //  DistanceSensor *ds = robot->getDistanceSensor("dsname");
+  //  ds->enable(timeStep);
+
+  // Main loop:
+  // - perform simulation steps until Webots is stopping the controller
+  while (supervisor->step(timeStep) != -1) {
+    // Read the sensors:
+    // Enter here functions to read sensor data, like:
+    //  double val = ds->getValue();
+
+    // Process sensor data here.
+
+    // Enter here functions to send actuator commands, like:
+    //  motor->setPosition(10.0);
+    int hoge = 0;
+  };
+
+  // Enter here exit cleanup code.
+
+  delete supervisor;
+  return 0;
+}
